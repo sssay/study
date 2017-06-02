@@ -1,0 +1,2 @@
+scp -r /home/wwwroot/default/nms root@pear.hk:/var/www/pear.hk
+把linux本地的nms文件夹上传到pear.hk主机对应的目录里

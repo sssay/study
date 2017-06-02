@@ -1,0 +1,53 @@
+1.在不用docker配置和jenkins持续集成的情况下。参考：
+https://github.com/mickgeek/yii2-advanced-one-domain-config
+
+记得需要修改frontend和backend的config/main.php,参考上面的项目
+另外记得修改common/config/main-local.php里面的数据库配置
+
+以v.pear.hk作为vhost参考配置：
+server {
+  listen 0.0.0.0:80;
+  listen [::]:80;
+
+  server_name v.pear.hk;
+  server_tokens off; ## Don't show the nginx version number, a security best practice
+  root /var/www/pear.hk/nms;
+
+    location / {
+    	root /var/www/pear.hk/nms/frontend/web;
+        try_files  $uri /frontend/web/index.php?$args;
+    }
+
+	location ~* \.php$
+	{
+	    try_files  $uri /frontend/web$uri =404;
+	    fastcgi_pass unix:/var/run/php5-fpm.sock;
+		  # fastcgi_index index.php;
+	    include /etc/nginx/fastcgi_params;
+      # fastcgi_param  SCRIPT_FILENAME $document_root$fastcgi_script_name;    
+	}
+
+    location ~* \.(htaccess|htpasswd|svn|git) {
+        deny all;
+    }
+
+    location /admin {
+        alias  /var/www/pear.hk/nms/backend/web;
+        try_files  $uri /backend/web/index.php?$args;
+
+        location ~* ^/admin/(.+\.php)$ {
+            try_files  $uri /backend/web/$1?$args;
+        }
+    }
+}
+
+2. 基于jenkins而不使用docker的自动化部署，参考永明和我写的“Node—Monitor自动编译”。
+主要工作在于：jenkins对应项目（如Operation-NMS）的配置，gitoschina上的webhook的设置，以及build中需要用Codeception执行的单元测试
+jenkins目前在迈创服务器上的工作流程为：gitoschina提交/pullrequest
+ ==> jenkins触发拉取到/var/jenkins/workspace/Operation-NMS目录中
+ ==> 在构建的exex执行框内运行单元测试 
+ ==> 测试完成后通过ssh到本地localhost，执行拷贝命令 cp -rf /var/jenkins/workspace/Operation-NMS/ /var/www/ 把gitoschina上面拉过来的复制到对外服务文件夹中。（可能应该先删除原有文件夹会避免一些问题，但是无法实现git那种快照更新方式，暂不执行）
+
+3.基于docker+jenkins的部署，参考：
+
+
