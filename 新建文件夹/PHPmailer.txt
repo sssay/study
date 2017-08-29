@@ -1,0 +1,27 @@
+邮件授权码clkqvvtkfrvjhbfa
+<?PHP
+require_once("PHPMailer/class.phpmailer.php"); 
+require_once("PHPMailer/class.pop3.php"); 
+require_once("PHPMailer/class.smtp.php"); 
+//示例化PHPMailer核心类
+$mail = new PHPMailer();
+
+$mail->SMTPDebug = 1; 
+$mail->isSMTP();
+$mail->Host = 'smtp.qq.com';
+$mail->SMTPAuth = true; 
+$mail->SMTPSecure = 'ssl';
+$mail->Port = 465;
+$mail->CharSet = 'UTF-8';
+$mail->FromName = 'YXS';
+$mail->Username ='1526143316@qq.com';
+$mail->Password = 'clkqvvtkfrvjhbfa';
+$mail->From = '1526143316@qq.com';
+
+$mail->IsHTML(true);//html邮件
+$mail->FromName = "管理员";
+$mail->AddAddress('your email', "成员"); 
+$mail->Subject = '123';
+$mail->Body = '<p>123</p>';
+$mail->send();
+?>

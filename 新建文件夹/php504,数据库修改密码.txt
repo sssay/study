@@ -1,0 +1,6 @@
+1. nginx 报502/504 ，走接口（可能接口请求超时），nginx返回504
+2. php进程阻塞 nginx报504
+
+
+修改虚拟机本地数据库密码：mysqladmin -u root -p password
+

@@ -1,0 +1,5 @@
+一.本地搭建web服务器
+   1. 建立test文件夹
+   2. 在test文件夹中建立index.html
+   3. 运行python -m SimpleHTTPServer 8080
+   4. 访问http://127.0.0.1:8000/index.html	

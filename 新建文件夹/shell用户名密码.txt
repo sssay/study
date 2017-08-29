@@ -1,0 +1,14 @@
+用户名：root
+密码：MaiChuang+Mc0224@2017mImA
+
+命令行：ssh root@183.60.40.104
+
+
+用户名：root
+密码：mdSc3V7tPUnt2
+
+
+上海数据库
+用户名：pear_root
+密码： its4pear
+

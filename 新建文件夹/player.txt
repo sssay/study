@@ -1,0 +1,50 @@
+播放设置发送给服务器
+1. 视频资源地址
+2. useMonitor打开监控器
+
+模块
+1. 日志
+2. 开始下载
+3. 下载进度
+4. cloud下载速度
+5. fog下载速度
+6. webrtc速率（p2p速率）
+7. buffersources
+7. 下载结束
+
+player.on('exception', onException);
+player.on('begin', onBegin);
+player.on('progress', onProgress);
+player.on('cloudspeed', onCloudSpeed);
+player.on('fogspeed', onFogSpeed);
+player.on('fograte', onWebRTCRate);
+player.on('buffersources', onBufferSources);
+player.on('done', onDone);
+
+1. onException函数 当播放器内部发生异常触发事件，返回错误code和msg
+2. onBegin 获取文件总大小
+3. onProgress 监听文件下载进度
+4. onCloudSpeed 监听cloud的平均下载速度
+5. onFogSpeed 监听fog的平均下载速度（包括WebRTC和HTTP）
+6. onWebRTCRate 监听fog节点总的下载比率（p2p下载的比率）（fog下载的字节除以目前下载的总字节数）
+7. onBufferSources 每下载一个buffer就触发一次，bufferSources是一个bitmap,代表从哪个源下载的
+8. onDone 完成下载触发
+
+在js页面调用函数，给返回值重新赋值，通过js dom操作，将获取的值插入到指定位置。（p2p速率，fog加载的文件大小，fog和cloud下载的速度Kbps）
+
+画图Smoothie Charts 是一个十分小的动态流数据图表库。(smoothie.js)
+
+1. var smoothie = new SmoothieChart();
+2. 通过时间和下载的速度构成横纵轴
+3. 通过订时调用，cloud 2s调用一次，fog 1s调用一次
+
+视频资源来源显示
+1. 通过计算bufferSources的长度，将文件通过方格来显示
+2. 视频来源： 	s: server，从服务器端下载（HTTP协议）
+		n: node，从节点下载（HTTP协议）
+		d: data channel，从节点下载（WebRTC协议）
+		b: browser，从其它浏览器下载（WebRTC协议）
+3. 通过匹配将来源颜色填充到对应位置
+
+
+

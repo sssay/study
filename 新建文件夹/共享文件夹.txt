@@ -1,0 +1,4 @@
+windows linux 建共享文件夹
+
+1. windows建立共享文件夹share
+2. liunx设置->共享文件夹->添加->路径（自动挂载和固定分配）

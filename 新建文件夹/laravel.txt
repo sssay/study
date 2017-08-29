@@ -1,0 +1,12 @@
+1. 安装composer依赖管理
+2. composer global require "laravel/installer"
+3. composer create-project --prefer-dist laravel/laravel blog 命名blog
+4. cd blog
+5. php artisan serve
+6. location / {
+    try_files $uri $uri/ /index.php?$query_string;
+}
+
+
+PHP源代码的性能数据Xdebug
+http://www.cnblogs.com/qiantuwuliang/archive/2011/01/23/1942382.html

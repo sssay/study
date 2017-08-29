@@ -1,0 +1,4 @@
+Ä£ºý²éÑ¯Óï¾ä
+fog_node_info
+
+SELECT * FROM `fog_node_traffic` WHERE fog_ip like "%90" ORDER BY `id` ASC

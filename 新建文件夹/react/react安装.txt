@@ -1,0 +1,13 @@
+npm install -g create-react-app
+create-react-app my-app
+cd my-app/
+npm start
+
+
+
+npm ls -depth=0  npm list
+
+rm -rf node_modules/    # 删除已安装的模块
+
+引入package.json
+一键安装 npm install
