@@ -1,3 +1,3 @@
 ## study
-### 这是一个悲伤的故事
-[这是我的主页](https://8888.com)
+### zzz
+[baidu](https://baidu.com)
