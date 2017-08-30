@@ -1,0 +1,21 @@
+重启PHP  service php7.0-fpm restart   
+重启nginx service nginx restart  service nginx reload
+
+
+
+Ubuntu 16.04环境中安装PHP7.0 Redis扩展
+1.root@ubuntu:/tmp# git clone -b php7 https://github.com/phpredis/phpredis.git
+
+2.root@ubuntu:/tmp# mv phpredis/ /etc/
+
+3.root@ubuntu:/tmp#  cd /etc/phpredis
+
+4.root@ubuntu://etc/phpredis# phpize
+
+5.root@ubuntu://etc/phpredis# ./configure
+
+6. root@ubuntu://etc/phpredis#make && make install
+
+7.root@ubuntu://etc/phpredis#vi /etc/php/7.0/fpm/conf.d/redis.ini  中 写入（extension=/etc/phpredis/modules/redis.so）退出保存
+
+8.root@ubuntu://etc/phpredis#vi /etc/php/7.0/apache2/php.ini (extension=redis.so)
